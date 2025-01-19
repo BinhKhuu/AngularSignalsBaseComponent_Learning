@@ -35,6 +35,6 @@ export class AppComponent {
   }
 
   outputObservable2ParentEvent(event: number){
-    console.log('parent output observable 2 updated ', event)
+    console.log('parent output observable 2 event ', event)
   }
 }

@@ -37,4 +37,8 @@ export class AppComponent {
   outputObservable2ParentEvent(event: number){
     console.log('parent output observable 2 event ', event)
   }
+
+  memoryLeakObservableParentEvent(event: number){
+    console.log('memory leak parent event ', event);
+  }
 }

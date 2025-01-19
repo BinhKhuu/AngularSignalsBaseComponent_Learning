@@ -23,7 +23,14 @@ export class OutputSignal1Component {
   private outputSubject = new Subject<number>();
   outputToObservable2 = outputFromObservable<number>(this.outputSubject)
 
+  // memory leak with interval and outputFromObservable because we can't unsubscribe from the parent observer
+  private interval$ = interval(10000);
+  memoryLeakToObservable = outputFromObservable<number>(this.interval$)
+  private intervalSubject;
   constructor(){
+    this.intervalSubject = this.interval$.subscribe((value)=>{
+      console.log('internvale subject ', value)
+    });
   }
 
   updateCountChildEmit(){
@@ -33,5 +40,8 @@ export class OutputSignal1Component {
 
   outputObservableEmit(){
     this.outputSubject.next(this.count())
+
+    // only stops timer for the subject in this component not parents
+    this.intervalSubject.unsubscribe();
   }
 }

@@ -1,23 +1,23 @@
 <div>
-  <p> parent </p>
-  <p>inputSignal_Required : {{inputSignal_Required}}</p>
-  <p>inputSignal_Alias : {{inputSignal_Alias}}</p>
-  <p>inputSignal_Transform: {{inputSignal_Transform}}</p>
+  <h1> Parent </h1>
+  <p>inputSignal_Required : {{required_primitive}}</p>
+  <p>inputSignal_Alias : {{alias_primitive}}</p>
+  <p>inputSignal_Transform: {{transform_primitive}}</p>
   <p><button (click)="updateParentInput()">update parent input</button></p>
 </div>
 <hr />
 <br />
 <div>
-  <p>App Signal 1</p>
   <app-signal-input-1 
-  [classicInput1]="inputSignal_Required"
-  [classicInput2]="inputSignal_Transform"
-  [inputSignal_Required]="inputSignal_Required"
-  [aliasedInputSignal]="inputSignal_Alias"
-  [inputSignal_Transform]="inputSignal_Transform"
+  [classicInput1]="required_primitive"
+  [classicInput2]="transform_primitive"
+  [inputSignal_Required]="required_primitive"
+  [aliasedInputSignal]="alias_primitive"
+  [inputSignal_Transform]="transform_primitive"
   >
 
 </app-signal-input-1>
+</div>
 <hr />
 <br />
 <div>
@@ -30,5 +30,14 @@
   
   </app-output-signal-1>
 </div>
-
+<hr />
+<br />
+<div>
+  <app-model-signal-1
+    [(modelInput_required)]="required_primitive"
+    [(modelInputAliased)]="alias_primitive"
+    [modelInput_Transform]="transform_primitive"
+    (modelInput_TransformChange)="inputSignal_Transformed($event)"
+  >
+  </app-model-signal-1>
 </div>

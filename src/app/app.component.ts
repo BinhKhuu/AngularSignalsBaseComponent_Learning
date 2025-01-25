@@ -2,28 +2,29 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SignalInput1Component } from "./signal-input-1/signal-input-1.component";
 import { OutputSignal1Component } from "./output-signal-1/output-signal-1.component";
+import { ModelSignal1Component } from "./model-signal-1/model-signal-1.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SignalInput1Component, OutputSignal1Component],
+  imports: [RouterOutlet, SignalInput1Component, OutputSignal1Component, ModelSignal1Component],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'SignalBaseComponents_1';
   inputSignal_NotRequired_Default = 20;
-  inputSignal_Required = 10;
-  inputSignal_Alias = 20;
-  inputSignal_Transform = 'ugh';
+  required_primitive = 10;
+  alias_primitive = 20;
+  transform_primitive = 'ugh';
 
   constructor(){}
 
   updateParentInput(){
     // parent updates child values
-    this.inputSignal_Alias+=10;
+    this.alias_primitive+=10;
     this.inputSignal_NotRequired_Default+=10;
-    this.inputSignal_Required+=10;
-    this.inputSignal_Transform+=' ugh';
+    this.required_primitive+=10;
+    this.transform_primitive+=' ugh';
   }
   
   countUpdatedParentEvent(event:number){
@@ -40,5 +41,9 @@ export class AppComponent {
 
   memoryLeakObservableParentEvent(event: number){
     console.log('memory leak parent event ', event);
+  }
+
+  inputSignal_Transformed(event:any){
+    console.log('model input transformed event listener')
   }
 }

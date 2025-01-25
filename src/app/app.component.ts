@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SignalInput1Component } from "./signal-input-1/signal-input-1.component";
 import { OutputSignal1Component } from "./output-signal-1/output-signal-1.component";
@@ -17,6 +17,8 @@ export class AppComponent {
   alias_primitive = 20;
   transform_primitive = 'ugh';
 
+  require_signal = signal<number>(10);
+
   constructor(){}
 
   updateParentInput(){
@@ -25,6 +27,7 @@ export class AppComponent {
     this.inputSignal_NotRequired_Default+=10;
     this.required_primitive+=10;
     this.transform_primitive+=' ugh';
+    this.require_signal.update((value) => value + value)
   }
   
   countUpdatedParentEvent(event:number){

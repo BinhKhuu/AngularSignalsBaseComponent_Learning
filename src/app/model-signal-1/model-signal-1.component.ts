@@ -15,6 +15,7 @@ export class ModelSignal1Component implements OnChanges {
   // model does not have a transform option instead use ngOnChanges and .update((value:string) => ...) to transform
   // note currently effect(...) is causing an infinite loop
   modelInput_Transform = model<string>('',{}) 
+  modelInput_Sginal_Required = model<number>();
 
   constructor(){
 
@@ -47,5 +48,6 @@ export class ModelSignal1Component implements OnChanges {
     this.modleInput_alias.update((value:number|undefined) => value ? value + value : 0);
     this.modelInput_required.update((value:number|undefined) => value ? value + value : 0);
     this.modelInput_Transform.update((value:string) => `${value} =)`);
+    this.modelInput_Sginal_Required.update((value:number | undefined) => value ? value + value : 10);
   }
 }
